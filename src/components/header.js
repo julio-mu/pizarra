@@ -1,15 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import {
-	AppBar,
-	Toolbar,
-	Typography,
-	Button,
-	List,
-	ListItem,
-	ListItemText,
-	ListItemIcon,
-} from '@material-ui/core';
+import { BrowserRouter as Link } from 'react-router-dom';
+import { AppBar, Grid, Typography, List, ListItem } from '@material-ui/core';
 import {
 	Dashboard,
 	MonetizationOn,
@@ -22,11 +13,14 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
 	root: {
 		backgroundColor: '#535353',
-		display: 'flex',
-		flexDirection: 'row',
-		justifyContent: 'space-between',
+		minHeight: '64px',
 	},
 	listItems: {
+		'&:hover': {
+			background: '#ffffff',
+		},
+	},
+	listItem: {
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'center',
@@ -49,73 +43,99 @@ const Header = () => {
 	return (
 		<div>
 			<AppBar position="static">
-				<Toolbar className={classes.root}>
-					<Link to="/">
-						<Button className={classes.menuItem}>Pizarra</Button>
-					</Link>
-					<List className={classes.listItems}>
-						<ListItem>
-							<Link to="/nosotros" className={classes.listItems}>
-								<Dashboard
-									style={{
-										color: '#ffffff',
-										marginRight: '5px',
-										height: '20px',
-									}}
-								/>
-								<Typography className={classes.menuItem}>Nosotros</Typography>
-							</Link>
-						</ListItem>
-						<ListItem>
-							<Link to="/pricing" className={classes.listItems}>
-								<MonetizationOn
-									style={{
-										color: '#ffffff',
-										marginRight: '5px',
-										height: '20px',
-									}}
-								/>
-								<Typography className={classes.menuItem}>Pricing</Typography>
-							</Link>
-						</ListItem>
-						<ListItem>
-							<Link to="/cursos" className={classes.listItems}>
-								<ViewList
-									style={{
-										color: '#ffffff',
-										marginRight: '5px',
-										height: '20px',
-									}}
-								/>
-								<Typography className={classes.menuItem}>Ver Cursos</Typography>
-							</Link>
-						</ListItem>
-						<ListItem>
-							<Link to="/signup" className={classes.listItems}>
-								<Person
-									style={{
-										color: '#ffffff',
-										marginRight: '5px',
-										height: '20px',
-									}}
-								/>
-								<Typography className={classes.menuItem}>Register</Typography>
-							</Link>
-						</ListItem>
-						<ListItem>
-							<Link to="/signin" className={classes.listItems}>
-								<Fingerprint
-									style={{
-										color: '#ffffff',
-										marginRight: '5px',
-										height: '20px',
-									}}
-								/>
-								<Typography className={classes.menuItem}>Login</Typography>
-							</Link>
-						</ListItem>
-					</List>
-				</Toolbar>
+				<Grid container xs={12} className={classes.root}>
+					<Grid item xs={1} />
+					<Grid
+						item
+						xs={1}
+						style={{
+							display: 'flex',
+							flexDirection: 'row',
+							justifyContent: 'flex-start',
+							alignItems: 'center',
+						}}
+					>
+						<Link
+							to="/"
+							style={{
+								textDecoration: 'none',
+							}}
+						>
+							<Typography className={classes.menuItem}>Pizarra</Typography>
+						</Link>
+					</Grid>
+					<Grid item xs={5} />
+					<Grid item xs={5} className={classes.listItem}>
+						<List className={classes.listItem}>
+							<ListItem>
+								<Link to="/nosotros" className={classes.listItem}>
+									<Dashboard
+										style={{
+											color: '#ffffff',
+											marginRight: '5px',
+											height: '20px',
+										}}
+									/>
+									<Typography className={classes.menuItem}>Nosotros</Typography>
+								</Link>
+							</ListItem>
+							<ListItem>
+								<Link to="/pricing" className={classes.listItem}>
+									<MonetizationOn
+										style={{
+											color: '#ffffff',
+											marginRight: '5px',
+											height: '20px',
+										}}
+									/>
+									<Typography className={classes.menuItem}>Pricing</Typography>
+								</Link>
+							</ListItem>
+							<ListItem>
+								<Link to="/cursos" className={classes.listItem}>
+									<ViewList
+										style={{
+											color: '#ffffff',
+											marginRight: '5px',
+											height: '20px',
+										}}
+									/>
+									<Typography className={classes.menuItem}>
+										Ver Cursos
+									</Typography>
+								</Link>
+							</ListItem>
+							<ListItem>
+								<Link to="/signup" className={classes.listItem}>
+									<Person
+										style={{
+											color: '#ffffff',
+											marginRight: '5px',
+											height: '20px',
+										}}
+									/>
+									<Typography className={classes.menuItem}>
+										Registrate
+									</Typography>
+								</Link>
+							</ListItem>
+							<ListItem>
+								<Link to="/signin" className={classes.listItem}>
+									<Fingerprint
+										style={{
+											color: '#ffffff',
+											marginRight: '5px',
+											height: '20px',
+										}}
+									/>
+									<Typography className={classes.menuItem}>
+										Iniciá sesión
+									</Typography>
+								</Link>
+							</ListItem>
+						</List>
+					</Grid>
+				</Grid>
 			</AppBar>
 		</div>
 	);

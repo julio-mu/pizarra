@@ -1,23 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import {
-	AppBar,
-	Toolbar,
-	Typography,
-	Button,
-	List,
-	ListItem,
-	ListItemText,
-	ListItemIcon,
-} from '@material-ui/core';
-import {
-	Dashboard,
-	MonetizationOn,
-	Person,
-	Fingerprint,
-	ViewList,
-	ExitToApp,
-} from '@material-ui/icons';
+import { BrowserRouter as Link } from 'react-router-dom';
+import { AppBar, Toolbar, Typography, List, ListItem } from '@material-ui/core';
+import { MonetizationOn, ViewList, ExitToApp } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({

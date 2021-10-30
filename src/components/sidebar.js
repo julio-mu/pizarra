@@ -3,15 +3,18 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
 	CssBaseline,
 	Drawer,
-	AppBar,
-	Toolbar,
 	List,
 	Divider,
 	ListItem,
 	Typography,
 	ListItemIcon,
-	ListItemText,
 	Avatar,
+	Grid,
+	Button,
+	Box,
+	FormControl,
+	Input,
+	InputAdornment,
 } from '@material-ui/core';
 import {
 	Dashboard,
@@ -22,10 +25,20 @@ import {
 	QuestionAnswer,
 	CreditCard,
 	Person,
+	Email,
+	Phone,
+	Home,
+	LocationCity,
+	Public,
+	Facebook,
+	Instagram,
+	LinkedIn,
+	Twitter,
+	YouTube,
+	Web,
 } from '@material-ui/icons';
-import { Link } from 'react-router-dom';
-import Panel from '../admin/panel';
-import Eventos from '../admin/eventos';
+import { Link, matchPath, useLocation } from 'react-router-dom';
+import TableList from '../components/tablelist';
 
 const drawerWidth = 240;
 
@@ -59,19 +72,8 @@ const useStyles = makeStyles((theme) => ({
 		margin: '5px 15px',
 		color: '#ffffff',
 		padding: '10px 10px 10px 10px',
-	},
-	listItem: {
-		width: 'initial',
-		margin: '5px 15px',
-		color: '#ffffff',
-		padding: '10px 10px 10px 10px',
 		'&:hover': {
 			background: 'rgba(200, 200, 200, 0.2)',
-			borderRadius: '5px',
-			outline: 'none',
-		},
-		'&:active': {
-			background: '#00ACC1',
 			borderRadius: '5px',
 			outline: 'none',
 		},
@@ -101,11 +103,12 @@ const useStyles = makeStyles((theme) => ({
 	content: {
 		flexGrow: 1,
 		backgroundColor: '#EEEEEE',
-		padding: theme.spacing(10),
+		padding: theme.spacing(8),
 	},
 }));
 
 export function PermanentDrawerLeft() {
+	let location = useLocation();
 	const classes = useStyles();
 	const [selectedIndex, setSelectedIndex] = React.useState(1);
 
@@ -157,7 +160,7 @@ export function PermanentDrawerLeft() {
 							<Avatar
 								style={{ height: '25px', width: '25px', marginRight: '10px' }}
 								alt="Company"
-								src="../images/yosydney.jpg"
+								src="/static/images/avatar/1.jpg"
 							/>
 							<Typography className={classes.listText} variant="initial">
 								{text}
@@ -185,6 +188,20 @@ export function PermanentDrawerLeft() {
 					].map((sidebarItem, index) => (
 						<Link to={sidebarItem.Link} style={{ textDecoration: 'none' }}>
 							<ListItem
+								style={{
+									background: matchPath(sidebarItem.Link, {
+										path: location.pathname,
+										exact: true,
+									})
+										? '#00ACC1'
+										: undefined,
+									borderRadius: matchPath(sidebarItem.Link, {
+										path: location.pathname,
+										exact: true,
+									})
+										? '5px'
+										: undefined,
+								}}
 								className={classes.listItem}
 								button
 								key={sidebarItem.text}
@@ -214,37 +231,461 @@ export function PermanentDrawerLeft() {
 				</List>
 			</Drawer>
 			<main className={classes.content}>
-				<div className={classes.toolbar} />
-				<Typography paragraph>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-					eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-					dolor purus non enim praesent elementum facilisis leo vel. Risus at
-					ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum
-					quisque non tellus. Convallis convallis tellus id interdum velit
-					laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed
-					adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-					integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-					eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-					quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-					vivamus at augue. At augue eget arcu dictum varius duis at consectetur
-					lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
-					faucibus et molestie ac.
+				<Typography variant="h5" style={{ marginBottom: '1rem' }}>
+					Configura tu e-school
 				</Typography>
-				<Typography paragraph>
-					Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-					ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-					elementum integer enim neque volutpat ac tincidunt. Ornare suspendisse
-					sed nisi lacus sed viverra tellus. Purus sit amet volutpat consequat
-					mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis
-					risus sed vulputate odio. Morbi tincidunt ornare massa eget egestas
-					purus viverra accumsan in. In hendrerit gravida rutrum quisque non
-					tellus orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant
-					morbi tristique senectus et. Adipiscing elit duis tristique
-					sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-					eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-					posuere sollicitudin aliquam ultrices sagittis orci a.
+				<Grid
+					container
+					xs
+					justify="flex-start"
+					style={{ margin: '0 0 4rem 0' }}
+				>
+					<Button
+						variant="contained"
+						color="primary"
+						style={{
+							border: '1px solid #e0e0e0',
+							borderRadius: '30px',
+							marginRight: '.5rem',
+							color: '#ffffffe6',
+							fontSize: '11px',
+							fontWeight: 'bold',
+							lineHeight: '2rem',
+							width: 'auto',
+							textTransform: 'uppercase',
+							boxShadow: 'none',
+						}}
+					>
+						Crear un Curso
+					</Button>
+					<Button
+						variant="contained"
+						color="default"
+						style={{
+							border: '1px solid #e0e0e0',
+							borderRadius: '30px',
+							marginRight: '.5rem',
+							color: '#444444',
+							fontSize: '11px',
+							fontWeight: 'bold',
+							lineHeight: '2rem',
+							width: 'auto',
+							textTransform: 'uppercase',
+							boxShadow: 'none',
+						}}
+					>
+						Personalizar mi perfil
+					</Button>
+					<Button
+						variant="contained"
+						color="default"
+						style={{
+							border: '1px solid #e0e0e0',
+							borderRadius: '30px',
+							marginRight: '.5rem',
+							color: '#444444',
+							fontSize: '11px',
+							fontWeight: 'bold',
+							lineHeight: '2rem',
+							width: 'auto',
+							textTransform: 'uppercase',
+							boxShadow: 'none',
+						}}
+					>
+						Asociar MercadoPago
+					</Button>
+				</Grid>
+				<Typography variant="h5" style={{ marginBottom: '1rem' }}>
+					Tus eventos
 				</Typography>
+				<Grid
+					container
+					xs
+					justify="space-between"
+					style={{ marginBottom: '2rem' }}
+				>
+					<Button
+						variant="contained"
+						color="primary"
+						style={{
+							border: '1px solid #e0e0e0',
+							borderRadius: '15px',
+							margin: '0 1rem .5rem 0',
+							color: '#ffffffe6',
+							fontSize: '11px',
+							fontWeight: 'bold',
+							lineHeight: '2rem',
+							width: '48%',
+							textTransform: 'uppercase',
+							boxShadow: 'none',
+						}}
+					>
+						Proximos cursos
+					</Button>
+					<Button
+						variant="contained"
+						color="default"
+						style={{
+							border: '1px solid #e0e0e0',
+							borderRadius: '15px',
+							margin: '0 1rem 0rem .5rem',
+							color: '#444444',
+							fontSize: '11px',
+							fontWeight: 'bold',
+							lineHeight: '2rem',
+							width: '48%',
+							textTransform: 'uppercase',
+							boxShadow: 'none',
+						}}
+					>
+						Cursos realizados
+					</Button>
+				</Grid>
+				<TableList />
+				<Profile />
+				<MercadoPago />
 			</main>
 		</div>
+	);
+}
+
+function Profile() {
+	const [open, setOpen] = React.useState(false);
+
+	const handleClickOpen = () => {
+		setOpen(true);
+	};
+
+	const handleClose = () => {
+		setOpen(false);
+	};
+	return (
+		<Grid
+			container
+			xs={12}
+			direction="row"
+			justify="space-between"
+			alignItems="space-between"
+			style={{ marginBottom: '4rem' }}
+		>
+			<Grid
+				container
+				xs
+				direction="column"
+				justify="space-between"
+				alignItems="center"
+				style={{
+					background: '#ffffffe6',
+					borderRadius: '10px',
+					padding: ' 2rem',
+				}}
+			>
+				<Grid item>
+					<Typography
+						align="center"
+						variant="h6"
+						style={{ color: '#444444', margin: '1rem 0' }}
+					>
+						Biografia
+					</Typography>
+					<Avatar
+						style={{ height: '80px', width: '80px', margin: 'auto' }}
+					></Avatar>
+					<Typography
+						align="center"
+						variant="subtitle2"
+						style={{ color: '#444444', margin: '.5rem 0' }}
+					>
+						Categoria
+					</Typography>
+					<Typography
+						align="center"
+						variant="h5"
+						style={{ color: '#444444', margin: '.5rem 0' }}
+					>
+						Talk Institute
+					</Typography>
+					<Typography
+						align="center"
+						variant="paragraph"
+						style={{ color: '#444444', margin: '.5rem 0' }}
+					>
+						Somos un instituto de ingles con mas de 10 años de experiencia
+						enseñando a alumnos de todas las eda- des. Prometemos una formación
+						integral de ingles{' '}
+					</Typography>
+				</Grid>
+				<Grid item>
+					<Button
+						variant="contained"
+						color="primary"
+						style={{
+							border: '1px solid #e0e0e0',
+							borderRadius: '30px',
+							marginRight: '.5rem',
+							color: '#ffffffe6',
+							fontSize: '11px',
+							fontWeight: 'bold',
+							lineHeight: '2rem',
+							width: 'auto',
+							textTransform: 'uppercase',
+							boxShadow: 'none',
+						}}
+					>
+						Actualizar
+					</Button>
+				</Grid>
+			</Grid>
+			<Grid
+				item
+				container
+				xs={9}
+				direction="row"
+				style={{
+					background: '#ffffffe6',
+					borderRadius: '10px',
+					marginLeft: '1rem',
+					padding: '2rem',
+				}}
+			>
+				<Grid item xs={12} style={{ margin: '1rem 0' }}>
+					<Typography variant="h6" style={{ color: '#444444' }}>
+						Información basica y de contacto
+					</Typography>
+				</Grid>
+				<Grid item xs={12} style={{ margin: '1rem 0' }}>
+					<Typography variant="subtitle1" style={{ color: '#444444' }}>
+						Información de contacto
+					</Typography>
+				</Grid>
+				<Grid
+					item
+					xs={12}
+					justify="center"
+					alignItems="center"
+					style={{ margin: '0 0 2rem 0' }}
+				>
+					<FormControl style={{ margin: '0 1rem' }}>
+						<Input
+							size="small"
+							variant="outlined"
+							id="input-with-icon-adornment"
+							style={{ color: '444444' }}
+							placeholder="E-mail"
+							startAdornment={
+								<InputAdornment position="start">
+									<Email style={{ color: '444444' }} />
+								</InputAdornment>
+							}
+						/>
+					</FormControl>
+					<FormControl style={{ margin: '0 1rem' }}>
+						<Input
+							size="small"
+							variant="outlined"
+							id="input-with-icon-adornment"
+							style={{ color: '444444' }}
+							placeholder="Telefono"
+							startAdornment={
+								<InputAdornment position="start">
+									<Phone style={{ color: '444444' }} />
+								</InputAdornment>
+							}
+						/>
+					</FormControl>
+					<FormControl style={{ margin: '0 1rem' }}>
+						<Input
+							size="small"
+							variant="outlined"
+							id="input-with-icon-adornment"
+							style={{ color: '444444' }}
+							placeholder="Sitio web"
+							startAdornment={
+								<InputAdornment position="start">
+									<Web style={{ color: '444444' }} />
+								</InputAdornment>
+							}
+						/>
+					</FormControl>
+				</Grid>
+				<Grid item xs={12} style={{ margin: '2rem 0 1rem 0' }}>
+					<Typography variant="subtitle1" style={{ color: '#444444' }}>
+						Datos de ubicación
+					</Typography>
+				</Grid>
+				<Grid item xs={12} style={{ margin: '0 0 2rem 0' }}>
+					<FormControl style={{ margin: '0 1rem' }}>
+						<Input
+							size="small"
+							variant="outlined"
+							id="input-with-icon-adornment"
+							style={{ color: '444444' }}
+							placeholder="Calle"
+							startAdornment={
+								<InputAdornment position="start">
+									<Home style={{ color: '444444' }} />
+								</InputAdornment>
+							}
+						/>
+					</FormControl>
+					<FormControl style={{ margin: '0 1rem' }}>
+						<Input
+							size="small"
+							variant="outlined"
+							id="input-with-icon-adornment"
+							style={{ color: '444444' }}
+							placeholder="Ciudad"
+							startAdornment={
+								<InputAdornment position="start">
+									<LocationCity style={{ color: '444444' }} />
+								</InputAdornment>
+							}
+						/>
+					</FormControl>
+					<FormControl style={{ margin: '0 1rem' }}>
+						<Input
+							size="small"
+							variant="outlined"
+							id="input-with-icon-adornment"
+							style={{ color: '444444' }}
+							placeholder="Pais"
+							startAdornment={
+								<InputAdornment position="start">
+									<Public style={{ color: '444444' }} />
+								</InputAdornment>
+							}
+						/>
+					</FormControl>
+				</Grid>
+				<Grid item xs={12} style={{ margin: '2rem 0 1rem 0' }}>
+					<Typography variant="subtitle1" style={{ color: '#444444' }}>
+						Redes sociales
+					</Typography>
+				</Grid>
+				<Grid item xs={12} style={{ margin: '0 0 2rem 0' }}>
+					<Button
+						startIcon={<Facebook />}
+						variant="outlined"
+						color="primary"
+						onClick={handleClickOpen}
+						style={{ width: 'auto', margin: '0 2rem 0 0' }}
+					>
+						Facebook
+					</Button>
+					<Button
+						startIcon={<Instagram />}
+						variant="outlined"
+						color="primary"
+						onClick={handleClickOpen}
+						style={{ width: 'auto', margin: '0 2rem 0 0' }}
+					>
+						Instagram
+					</Button>
+					<Button
+						startIcon={<Twitter />}
+						variant="outlined"
+						color="primary"
+						onClick={handleClickOpen}
+						style={{ width: 'auto', margin: '0 2rem 0 0' }}
+					>
+						Twitter
+					</Button>
+					<Button
+						startIcon={<LinkedIn />}
+						variant="outlined"
+						color="primary"
+						onClick={handleClickOpen}
+						style={{ width: 'auto', margin: '0 2rem 0 0' }}
+					>
+						LinkedIn
+					</Button>
+					<Button
+						startIcon={<YouTube />}
+						variant="outlined"
+						color="primary"
+						onClick={handleClickOpen}
+						style={{ width: 'auto', margin: '0 2rem 0 0' }}
+					>
+						YouTube
+					</Button>
+				</Grid>
+				<Grid item xs={12}>
+					<Button
+						variant="contained"
+						color="primary"
+						style={{
+							border: '1px solid #e0e0e0',
+							borderRadius: '30px',
+							marginRight: '.5rem',
+							color: '#ffffffe6',
+							fontSize: '11px',
+							fontWeight: 'bold',
+							lineHeight: '2rem',
+							width: 'auto',
+							textTransform: 'uppercase',
+							boxShadow: 'none',
+						}}
+					>
+						Actualizar datos
+					</Button>
+				</Grid>
+			</Grid>
+		</Grid>
+	);
+}
+
+function MercadoPago() {
+	return (
+		<Box
+			style={{
+				display: 'flex',
+				flexDirection: 'column',
+				margin: 'auto',
+				justifyContent: 'center',
+				width: '400px',
+				background: '#ffffffe6',
+				borderRadius: '10px',
+				padding: '2rem',
+			}}
+		>
+			<Box
+				style={{
+					display: 'flex',
+					flexDirection: 'column',
+					margin: 'auto',
+					justifyContent: 'center',
+					width: '100%',
+					background: '#999999',
+					borderRadius: '10px',
+					padding: '2rem',
+				}}
+			>
+				<Avatar style={{ height: '80px', width: '80px', margin: 'auto' }} />
+			</Box>
+			<Typography variant="paragraph" style={{ margin: '4rem 0' }}>
+				Para poder recibir pagos online vas a necesitar una cuenta de Mercado
+				Pago. Podes crearte una gratuitamente haciendo click en el siguiente
+				link.
+			</Typography>
+
+			<Button
+				variant="contained"
+				color="primary"
+				style={{
+					border: '1px solid #e0e0e0',
+					borderRadius: '30px',
+					marginRight: '.5rem',
+					color: '#ffffffe6',
+					fontSize: '11px',
+					fontWeight: 'bold',
+					lineHeight: '2rem',
+					width: 'auto',
+					textTransform: 'uppercase',
+					boxShadow: 'none',
+				}}
+			>
+				Conectar
+			</Button>
+		</Box>
 	);
 }
