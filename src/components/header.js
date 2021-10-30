@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	listItems: {
 		'&:hover': {
-			background: '#ffffff',
+			background: '#fcfcfc',
 		},
 	},
 	listItem: {
