@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, List, ListItem } from '@material-ui/core';
 import { MonetizationOn, ViewList, ExitToApp } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AppBar, Grid, Typography, List, ListItem } from '@material-ui/core';
 import {
 	Dashboard,
@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
 	root: {
 		backgroundColor: '#535353',
 		minHeight: '64px',
+		padding: '0px 84px',
 	},
 	listItems: {
 		'&:hover': {
@@ -44,10 +45,9 @@ const Header = () => {
 		<div>
 			<AppBar position="static">
 				<Grid container xs={12} className={classes.root}>
-					<Grid item xs={1} />
 					<Grid
 						item
-						xs={1}
+						xs={2}
 						style={{
 							display: 'flex',
 							flexDirection: 'row',
